@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">CarFaxTech</string>
+    <string name="Loading">Loading</string>
+    <string name="Title">2011 BMW 3 Series 328i</string>
+    <string name="Cost">$ 17,234</string>
+    <string name="Mileage">39.1k mi</string>
+    <string name="City_State">Highland Park, IL</string>
+    <string name="Call_Dealer">Call Dealer</string>
+    <string name="Vehicle_Info">Vehicle Info</string>
+    <string name="Location">Location</string>
+    <string name="ExtColor">Exterior Color</string>
+    <string name="IntColor">Interior Color</string>
+    <string name="Drive_Type">Drive Type</string>
+    <string name="Transmission">Transmission</string>
+    <string name="Body_Style">Body Style</string>
+    <string name="Engine">Engine</string>
+    <string name="Fuel">Fuel</string>
+    <string name="No_load">Unable to load</string>
 </resources>

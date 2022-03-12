@@ -2,70 +2,67 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView_car_thumbnail"
+        android:id="@+id/car_thumbnail"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/abarth"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/carTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="Title"
+        android:text="@string/Title"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_car_thumbnail" />
+        app:layout_constraintTop_toBottomOf="@+id/car_thumbnail" />
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/carPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:paddingLeft="10dp"
-        android:paddingBottom="40dp"
-        android:text="$ 1,000"
+        android:paddingStart="10dp"
+        android:paddingBottom="20dp"
+        android:text="@string/Cost"
+        android:textSize="18sp"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/carTitle" />
 
     <View
         android:id="@+id/viewSplit"
         android:layout_width="2dp"
         android:layout_height="20dp"
         android:layout_marginStart="12dp"
-        android:background="@color/grey"
-        app:layout_constraintBottom_toBottomOf="@+id/price"
-        app:layout_constraintStart_toEndOf="@+id/price"
-        app:layout_constraintTop_toTopOf="@+id/price"
-        app:layout_constraintVertical_bias="0.0" />
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/carMileage"
+        app:layout_constraintStart_toEndOf="@+id/carPrice"
+        app:layout_constraintTop_toTopOf="@+id/carPrice" />
 
     <TextView
-        android:id="@+id/distance"
+        android:id="@+id/carMileage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="39.1 k"
+        android:text="@string/Mileage"
+        android:textSize="18sp"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/viewSplit"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/carTitle" />
 
     <View
         android:id="@+id/viewHorizontal"
@@ -76,29 +73,20 @@
         android:background="@color/light_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/price" />
+        app:layout_constraintTop_toBottomOf="@+id/carPrice" />
 
     <TextView
         android:id="@+id/infoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="Vehicle Info"
+        android:paddingTop="10dp"
+        android:text="@string/Vehicle_Info"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewHorizontal" />
 
-    <TextView
-        android:id="@+id/titleInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:text="Vehicle Info"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewHorizontal" />
 
     <TextView
         android:id="@+id/infoLocation"
@@ -106,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:paddingTop="40dp"
-        android:text="Location"
+        android:text="@string/Location"
         android:textColor="@color/text_grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoTitle" />
@@ -117,10 +105,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="139dp"
         android:paddingTop="40dp"
-        android:text="New York"
-        android:textColor="@color/text_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:text="@string/City_State"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/infoLocation"
         app:layout_constraintTop_toBottomOf="@+id/infoTitle" />
 
@@ -129,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="Exterior Color"
+        android:text="@string/ExtColor"
         android:textColor="@color/text_grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoLocation" />
@@ -138,11 +124,9 @@
         android:id="@+id/carExtColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:text="Red Color"
-        android:textColor="@color/text_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.445"
+        android:layout_marginStart="108dp"
+        android:text="@string/ExtColor"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/infoExtColor"
         app:layout_constraintTop_toBottomOf="@+id/infoLocation" />
 
@@ -151,7 +135,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="Interior Color"
+        android:text="@string/IntColor"
         android:textColor="@color/text_grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoExtColor" />
@@ -160,10 +144,9 @@
         android:id="@+id/carIntColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Black Color"
-        android:textColor="@color/text_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        android:layout_marginStart="112dp"
+        android:text="@string/IntColor"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/infoIntColor"
         app:layout_constraintTop_toBottomOf="@+id/infoExtColor" />
 
@@ -172,7 +155,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="Drive Type"
+        android:text="@string/Drive_Type"
         android:textColor="@color/text_grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoIntColor" />
@@ -181,10 +164,9 @@
         android:id="@+id/carDrivetype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RWD"
-        android:textColor="@color/text_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        android:layout_marginStart="128dp"
+        android:text="@string/Drive_Type"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/infoDrivetype"
         app:layout_constraintTop_toBottomOf="@+id/infoIntColor" />
 
@@ -193,7 +175,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="Transmission"
+        android:text="@string/Transmission"
         android:textColor="@color/text_grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoDrivetype" />
@@ -202,10 +184,9 @@
         android:id="@+id/carTransmission"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Automatic"
-        android:textColor="@color/text_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        android:layout_marginStart="108dp"
+        android:text="@string/Transmission"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/infoTransmission"
         app:layout_constraintTop_toBottomOf="@+id/infoDrivetype" />
 
@@ -214,7 +195,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="Body Style"
+        android:text="@string/Body_Style"
         android:textColor="@color/text_grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carTransmission" />
@@ -223,10 +204,9 @@
         android:id="@+id/carBodyStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sedan"
-        android:textColor="@color/text_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
+        android:layout_marginStart="128dp"
+        android:text="@string/Body_Style"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/infoBodyStyle"
         app:layout_constraintTop_toBottomOf="@+id/carTransmission" />
 
@@ -235,7 +215,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="Engine"
+        android:text="@string/Engine"
         android:textColor="@color/text_grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoBodyStyle" />
@@ -244,10 +224,9 @@
         android:id="@+id/carEngine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="4 Cyl 2.4 L"
-        android:textColor="@color/text_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+        android:layout_marginStart="152dp"
+        android:text="@string/Engine"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/infoEngine"
         app:layout_constraintTop_toBottomOf="@+id/carBodyStyle" />
 
@@ -255,22 +234,21 @@
         android:id="@+id/infoFuel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gasoline"
+        android:layout_marginStart="40dp"
+        android:text="@string/Fuel"
         android:textColor="@color/text_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.528"
-        app:layout_constraintStart_toEndOf="@+id/carFuel"
+        android:paddingBottom="20dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoEngine" />
 
     <TextView
         android:id="@+id/carFuel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:text="Gasoline"
-        android:textColor="@color/text_grey"
-        android:paddingBottom="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="168dp"
+        android:text="@string/Fuel"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/infoFuel"
         app:layout_constraintTop_toBottomOf="@+id/infoEngine" />
 
     <View
@@ -280,21 +258,22 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/light_grey"
+        android:elevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carFuel" />
+        app:layout_constraintTop_toBottomOf="@+id/infoFuel" />
 
     <Button
-        android:id="@+id/btnCallDealer"
-        android:layout_width="0dp"
+        android:id="@+id/btnCall"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CALL DEALER"
-        android:textColor="@color/white"
+        android:text="@string/Call_Dealer"
         android:textStyle="bold"
-        android:backgroundTint="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:theme="@style/MyButtonTheme"
+        android:background="#A4ABA4"
+        android:layout_margin="0dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

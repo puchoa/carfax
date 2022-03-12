@@ -35,24 +35,24 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="Title"
+            android:text="@string/Title"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/imageView_car_thumbnail"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_car_thumbnail" />
 
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:text="$ 1,000"
+            android:paddingStart="10dp"
+            android:text="@string/Cost"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <View
             android:id="@+id/viewSplit"
@@ -66,11 +66,11 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/distance"
+            android:id="@+id/mileage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="39.1 k"
+            android:text="@string/Mileage"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/viewSplit"
             app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -79,11 +79,12 @@
             android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="McAllen, TX"
+            android:text="@string/City_State"
             android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/price" />
 
         <View
@@ -103,7 +104,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/blue"
             android:textStyle="bold"
-            android:text="CALL DEALER"
+            android:text="@string/Call_Dealer"
             style="?android:attr/borderlessButtonStyle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

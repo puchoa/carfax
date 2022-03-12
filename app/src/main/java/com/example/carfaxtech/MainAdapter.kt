@@ -5,47 +5,55 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.video_row.view.*
-import java.text.NumberFormat
-
+import kotlinx.android.synthetic.main.car_row.view.*
 
 class MainAdapter(val homeFeed: HomeFeed): RecyclerView.Adapter<CustomViewHolder>() {
 
-    // numberOfItems
     override fun getItemCount(): Int {
         return homeFeed.listings.count()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-        // how do we even create a view
-        val layoutInflater = LayoutInflater.from(parent?.context)
-        val cellForRow = layoutInflater.inflate(R.layout.video_row, parent, false)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val cellForRow = layoutInflater.inflate(R.layout.car_row, parent, false)
         return CustomViewHolder(cellForRow)
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+
         val car = homeFeed.listings.get(position)
-        holder?.view?.title?.text = "${car.year} ${car.make} ${car.model}"
-        holder?.view?.price?.text = "$ ${NumberFormat.getIntegerInstance().format(car.currentPrice)}"
-        holder?.view?.location.text = "${car.dealer.city}, ${car.dealer.state}"
 
-        val thumbnaulImageView = holder?.view?.imageView_car_thumbnail
-        Picasso.get().load(car.images.firstPhoto.large).into(thumbnaulImageView)
+        holder.view.title?.text = Functions.convertCarTitle(car.year, car.make, car.model)
+        holder.view.price?.text = Functions.convertPrice(car.currentPrice)
+        holder.view.mileage?.text = Functions.convertMileage(car.mileage)
+        holder.view.location?.text = Functions.convertLocation(car.dealer.city, car.dealer.state)
 
-        holder?.car = car
+        Picasso.get().load(car.images.firstPhoto.large).into(holder.view.imageView_car_thumbnail)
+
+        holder.carInfo = car
     }
 }
 
+class CustomViewHolder(val view: View, var carInfo: Car? = null): RecyclerView.ViewHolder(view) {
 
-class CustomViewHolder(val view: View, var car: Car? = null): RecyclerView.ViewHolder(view) {
+    companion object{
+        val CAR_INFO_KEY = "CAR_INFO"
+    }
 
     init{
         view.setOnClickListener {
-            val intent = Intent(view.context, DetailActivity::class.java)
-            intent.putExtra("title", "${car?.year} ${car?.make} ${car?.model}")
-            view.context.startActivity(intent)
 
+            val caraDataJson = Gson().toJson(carInfo)
+
+            val intent = Intent(view.context, DetailActivity::class.java)
+            intent.putExtra(CAR_INFO_KEY, caraDataJson)
+            view.context.startActivity(intent)
+        }
+
+        view.btnCallDealer.setOnClickListener {
+            Functions.makeCall(view.context, carInfo?.dealer?.phone)
         }
     }
 }
