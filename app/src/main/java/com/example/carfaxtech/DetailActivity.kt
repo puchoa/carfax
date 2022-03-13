@@ -26,6 +26,7 @@ class DetailActivity : AppCompatActivity(){
         val carData: Car? = Gson().fromJson(carInfo, Car::class.java)
 
         recyclerView_main.adapter = DetailAdapter(carData)
+        loadingProgressBar.visibility = View.GONE
     }
 
     private class DetailAdapter(val carData: Car? = null): RecyclerView.Adapter<DetailViewHolder>(){
@@ -48,7 +49,7 @@ class DetailActivity : AppCompatActivity(){
             holder.customView.carEngine?.text = carData?.engine
             holder.customView.carFuel?.text = carData?.fuel
 
-            Picasso.get().load(carData?.images?.firstPhoto?.large).into(holder.customView.car_thumbnail)
+            Picasso.get().load(carData?.images?.firstPhoto?.large).placeholder(R.drawable.carfax).into(holder.customView.car_thumbnail)
 
             holder.telNumber = carData?.dealer?.phone
         }

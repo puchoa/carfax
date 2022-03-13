@@ -8,10 +8,14 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.*
-import java.io.IOException
+
 import android.Manifest
 import android.app.Activity
+import android.view.View
+import android.widget.Toast
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
+
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
@@ -30,43 +34,24 @@ class MainActivity : AppCompatActivity() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this as Activity,
                     Manifest.permission.CALL_PHONE)) {
+                return
             } else {
                 ActivityCompat.requestPermissions(this,
                     arrayOf(Manifest.permission.CALL_PHONE), REQUEST_CODE)
             }
         }
         val path = this.filesDir.absolutePath
-        fetchJsonAndSetupDB(path)
-    }
 
-    fun fetchJsonAndSetupDB(path: String){
         Log.d(Tag,"Attempting to Fetch JSON")
+        CarFaxRepo().getCarJson(path).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.d(Tag,"Successfully Fetched JSON")
+                loading.visibility = View.GONE
+                loadingProgressBar.visibility = View.GONE
 
-        val url = "https://carfax-for-consumers.firebaseio.com/assignment.json"
-        val request = Request.Builder().url(url).build()
-        val client = OkHttpClient()
-        client.newCall(request).enqueue(object: Callback{
-
-            override fun onResponse(call: Call?, response: Response?) {
-                val body = response?.body()?.string()
-
-                if (!body.isNullOrEmpty()){
-                    val gson = GsonBuilder().create()
-                    val homefeed = gson.fromJson(body, HomeFeed::class.java)
-                    Log.d(Tag,"Successfully Fetched JSON")
-
-                    val file = File("$path/database").printWriter()
-                    file.use { out -> out.println(body) }
-                    Log.d(Tag,"Database has been written to file")
-
-                    runOnUiThread {
-                        loading.text = ""
-                        recyclerView_main.adapter = MainAdapter(homefeed)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call, e: IOException) {
+                recyclerView_main.adapter = MainAdapter(it)
+        },{
                 Log.d("appStart","Failed to execute request")
 
                 try{
@@ -76,17 +61,19 @@ class MainActivity : AppCompatActivity() {
                     val homefeed = gson.fromJson(file, HomeFeed::class.java)
                     Log.d(Tag,"Pulled database from file")
 
+                    Toast.makeText(applicationContext,getString(R.string.No_Internet),Toast.LENGTH_SHORT).show()
+
                     runOnUiThread {
-                        loading.text = ""
+                        loadingProgressBar.visibility = View.GONE
                         recyclerView_main.adapter = MainAdapter(homefeed)
                     }
                 } catch (exception: Exception){
                     Log.d(Tag,"${exception}")
                     runOnUiThread {
+                        loadingProgressBar.visibility = View.GONE
                         loading.text = getString(R.string.No_load)
                     }
                 }
-            }
         })
     }
 }

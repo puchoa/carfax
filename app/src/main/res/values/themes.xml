@@ -16,4 +16,7 @@
     <style name="MyButtonTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorAccent">@color/blue</item>
     </style>
+    <style name="LoadingColor" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/blue</item>
+    </style>
 </resources>

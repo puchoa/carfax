@@ -30,7 +30,8 @@ class MainAdapter(val homeFeed: HomeFeed): RecyclerView.Adapter<CustomViewHolder
         holder.view.mileage?.text = Functions.convertMileage(car.mileage)
         holder.view.location?.text = Functions.convertLocation(car.dealer.city, car.dealer.state)
 
-        Picasso.get().load(car.images.firstPhoto.large).into(holder.view.imageView_car_thumbnail)
+
+        Picasso.get().load(car.images.firstPhoto.large).placeholder(R.drawable.carfax).into(holder.view.imageView_car_thumbnail)
 
         holder.carInfo = car
     }
